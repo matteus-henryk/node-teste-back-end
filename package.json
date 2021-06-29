@@ -5,11 +5,21 @@
   "repository": "https://github.com/BrunoHive/node-backend-test.git",
   "author": "Bruno Santos <bruno.santos@hivelabs.com.br>",
   "license": "MIT",
-  "scripts": {},
-  "dependencies": {},
+  "scripts": {
+    "test": "jest --runInBand --detectOpenHandles",
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --poll --respawn src/infra/http/server.ts",
+    "start": "node src/infra/http/server.js"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  },
   "devDependencies": {
+    "@types/express": "^4.17.12",
     "eslint": "7.2.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "2.22.1"
+    "eslint-plugin-import": "2.22.1",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.3.4"
   }
 }
