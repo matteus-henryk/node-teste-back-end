@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { DeleteUserService } from "../services/DeleteUserService";
 import { container } from "tsyringe";
 import { CreateUserService } from "../services/CreateUserService";
 
@@ -13,6 +14,19 @@ class UserController {
     const user = await createUserService.execute(request.body);
 
     return response.status(201).json(user);
+  }
+
+  async delete(
+    request: Request,
+    response: Response
+  ): Promise<Response> {
+    const deleteUserService = container.resolve(DeleteUserService);
+
+    const { id } = request.params;
+
+    const message = await deleteUserService.execute(id);
+
+    return response.status(200).json({ message });
   }
 }
 

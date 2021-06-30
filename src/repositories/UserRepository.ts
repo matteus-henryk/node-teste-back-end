@@ -1,6 +1,6 @@
 import { IUserByNickname } from "../dtos/IUserByNickname";
 import { IUser } from "../models/dtos/IUser";
-import { getRepository, Repository } from "typeorm";
+import { DeleteResult, getRepository, Repository } from "typeorm";
 import { IDataUser } from "../dtos/IDataUser";
 import { User } from "../models/User";
 import IUserRepository from "../repositories/IUserRepository";
@@ -20,6 +20,14 @@ class UserRepository implements IUserRepository {
     await this.userRepository.save(user);
 
     return user;
+  }
+
+  async delete(
+    id: string
+  ): Promise<any> {
+    const resp = await this.userRepository.delete(id);
+
+    return resp;
   }
 
   async getUserById(

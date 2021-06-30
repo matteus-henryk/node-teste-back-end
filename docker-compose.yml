@@ -1,19 +1,19 @@
 version: '3'
 
 services:
-  # node_api:
-  #   image: node:14-alpine3.10
-  #   container_name: node_api-teste
-  #   restart: always
-  #   command: npm run dev
-  #   working_dir: /api
-  #   restart: always
-  #   volumes:
-  #     - ./:/api
-  #   ports:
-  #     - 3030:3030
-  #   external_links:
-  #     - postgres
+  node_api:
+    image: node:14-alpine3.10
+    container_name: node_api-teste
+    restart: always
+    command: npm run dev
+    working_dir: /api
+    restart: always
+    volumes:
+      - ./:/api
+    ports:
+      - 3030:3030
+    links:
+      - postgres
   postgres:
     image: postgres:latest
     container_name: "node_api-test-db_postgres"

@@ -3,6 +3,7 @@ import { FakeUser } from "../../models/fakes/FakeUser";
 import { IUser } from "../../models/dtos/IUser";
 import IUserRepository from "../IUserRepository";
 import { IUserByNickname } from "dtos/IUserByNickname";
+import { DeleteResult } from "typeorm";
 
 
 class FakeUserRepository implements IUserRepository {
@@ -13,6 +14,16 @@ class FakeUserRepository implements IUserRepository {
     this.userDataBase.push(user);
 
     return user;
+  }
+
+  async delete(
+    id: string
+  ): Promise<any> {
+    const indexUser = this.userDataBase.findIndex(user => user.id === id);
+
+    this.userDataBase.splice(indexUser, 1);
+
+    return indexUser;
   }
 
   async getUserById(
