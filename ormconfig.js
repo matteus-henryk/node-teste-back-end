@@ -1,7 +1,5 @@
 require('dotenv/config');
 
-console.log('console.log', process.env.POSTGRES_DB_HOST);
-
 const postgre = {
   name: process.env.POSTGRES_DB_NAME,
   type: 'postgres',
