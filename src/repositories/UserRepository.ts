@@ -1,8 +1,9 @@
-import { IDataUser } from "../dtos/IDataUser";
-import IUserRepository from "../repositories/IUserRepository";
+import { IUserByNickname } from "../dtos/IUserByNickname";
+import { IUser } from "../models/dtos/IUser";
 import { getRepository, Repository } from "typeorm";
+import { IDataUser } from "../dtos/IDataUser";
 import { User } from "../models/User";
-import { IUserByNickname } from "dtos/IUserByNickname";
+import IUserRepository from "../repositories/IUserRepository";
 
 class UserRepository implements IUserRepository {
   private userRepository: Repository<User>
@@ -17,6 +18,14 @@ class UserRepository implements IUserRepository {
     const user = this.userRepository.create(data);
 
     await this.userRepository.save(user);
+
+    return user;
+  }
+
+  async getUserById(
+    id: string
+  ): Promise<User | undefined> {
+    const user = this.userRepository.findOne({ id });
 
     return user;
   }
@@ -43,6 +52,13 @@ class UserRepository implements IUserRepository {
     const users = await this.userRepository.find({ lastname });
 
     return users;
+  }
+
+  async save(
+    user: IUser
+  ): Promise<User | undefined> {
+
+    return await this.userRepository.save(user)
   }
 }
 

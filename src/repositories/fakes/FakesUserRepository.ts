@@ -15,6 +15,14 @@ class FakeUserRepository implements IUserRepository {
     return user;
   }
 
+  async getUserById(
+    id: string
+  ): Promise<IUser | undefined> {
+    const user = this.userDataBase.find(user => user.id === id);
+
+    return user;
+  }
+
   async getUserByNickname(
     queryNickname: string
   ): Promise<IUserByNickname | undefined> {
@@ -36,7 +44,22 @@ class FakeUserRepository implements IUserRepository {
   ): Promise<IUser[] | []> {
     const users = this.userDataBase.filter(user => user.lastname === lastname);
 
+
     return users;
+  }
+
+  async save(
+    user: IUser
+  ): Promise<IUser | undefined> {
+    const indexOfUser = this.userDataBase.findIndex(userDb => userDb.id === user.id);
+
+    this.userDataBase.splice(indexOfUser, 1);
+
+    this.userDataBase.push(user);
+
+    const userSaved = this.userDataBase.find(userDb => userDb.id === user.id);
+
+    return userSaved;
   }
 }
 
