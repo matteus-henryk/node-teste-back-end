@@ -1,7 +1,8 @@
 import { IDataUser } from "../../dtos/IDataUser";
 import { FakeUser } from "../../models/fakes/FakeUser";
 import { IUser } from "../../models/dtos/IUser";
-import { IUserRepository } from "../IUserRepository";
+import IUserRepository from "../IUserRepository";
+import { IUserByNickname } from "dtos/IUserByNickname";
 
 
 class FakeUserRepository implements IUserRepository {
@@ -14,12 +15,29 @@ class FakeUserRepository implements IUserRepository {
     return user;
   }
 
-  async getUserByNickname(nickname: string): Promise<IUser | undefined> {
-    const user = this.userDataBase.find(user => user.nickname === nickname);
+  async getUserByNickname(
+    queryNickname: string
+  ): Promise<IUserByNickname | undefined> {
+    const user = this.userDataBase.find(user => user.nickname === queryNickname);
 
-    return user;
+    return user
   }
 
+  async getUserByName(
+    name: string
+  ): Promise<IUser[] | []> {
+    const users = this.userDataBase.filter(user => user.name === name);
+
+    return users;
+  }
+
+  async getUserByLastname(
+    lastname: string
+  ): Promise<IUser[] | []> {
+    const users = this.userDataBase.filter(user => user.lastname === lastname);
+
+    return users;
+  }
 }
 
 export { FakeUserRepository };

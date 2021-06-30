@@ -2,6 +2,7 @@ import { IDataUser } from "../dtos/IDataUser";
 import IUserRepository from "../repositories/IUserRepository";
 import { getRepository, Repository } from "typeorm";
 import { User } from "../models/User";
+import { IUserByNickname } from "dtos/IUserByNickname";
 
 class UserRepository implements IUserRepository {
   private userRepository: Repository<User>
@@ -22,10 +23,26 @@ class UserRepository implements IUserRepository {
 
   async getUserByNickname(
     nickname: string
-  ): Promise<User | undefined> {
-    const user = this.userRepository.findOne({ nickname });
+  ): Promise<IUserByNickname | undefined> {
+    const user = await this.userRepository.findOne({ nickname });
 
-    return user;
+    return user
+  }
+
+  async getUserByName(
+    name: string
+  ): Promise<User[] | []> {
+    const users = await this.userRepository.find({ name });
+
+    return users;
+  }
+
+  async getUserByLastname(
+    lastname: string
+  ): Promise<User[] | []> {
+    const users = await this.userRepository.find({ lastname });
+
+    return users;
   }
 }
 

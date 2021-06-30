@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { inject, injectable } from "tsyringe";
 import ErrorsApp from "../errors/ErrorsApp";
 import { IDataUser } from "../dtos/IDataUser";
@@ -12,7 +13,9 @@ class CreateUserService {
     private userRepository: IUserRepository
   ){}
 
-  async execute(data: IDataUser): Promise<IUser> {
+  async execute(
+    data: IDataUser
+  ): Promise<IUser> {
 
     const nicknameAlreadyExists = await this.userRepository.getUserByNickname(data.nickname);
 

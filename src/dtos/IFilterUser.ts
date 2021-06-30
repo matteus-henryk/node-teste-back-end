@@ -1,6 +1,8 @@
 interface IFilterUser {
-  name?: string;
-  lastname?: string;
+  name?: string | undefined;
+  lastname?: string | undefined;
 }
 
-export { IFilterUser };
+export {
+  IFilterUser
+};

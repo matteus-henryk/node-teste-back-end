@@ -19,7 +19,7 @@ class FakeUser implements IUser {
       "updatedAt"
     >
   ) {
-    this.id = crypto.randomBytes(8).toString();
+    this.id = crypto.randomBytes(8).toString("hex");
 
     Object.assign(
       this,

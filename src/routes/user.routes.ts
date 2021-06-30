@@ -1,11 +1,13 @@
 import { Router } from "express";
-import { UserController } from "../controllers/UserController";
+import UserController  from "../controllers/UserController";
+import ListUsersByNameLastname from "../controllers/ListUsersByNameLastname";
+import GetUserByNicknameController from "../controllers/GetUserByNicknameController";
 
 const userRoutes = Router();
 
-const userController = new UserController();
-
-userRoutes.post("/", userController.create);
+userRoutes.post("/", UserController.create);
+userRoutes.get("/", ListUsersByNameLastname.index);
+userRoutes.get("/:nickname", GetUserByNicknameController.show);
 
 
 export { userRoutes };

@@ -1,9 +1,9 @@
-import { CreateUserService } from "../services/CreateUserService";
 import { Request, Response } from "express";
 import { container } from "tsyringe";
+import { CreateUserService } from "../services/CreateUserService";
+
 
 class UserController {
-
   async create(
     request: Request,
     response: Response
@@ -16,4 +16,4 @@ class UserController {
   }
 }
 
-export { UserController };
+export default new UserController();
