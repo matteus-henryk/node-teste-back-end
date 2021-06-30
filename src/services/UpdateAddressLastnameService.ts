@@ -26,9 +26,9 @@ class UpdateAddessLastnameService {
       address: data.address
     });
 
-    const usersaved = await this.userRepository.save(user);
+    const userSaved = await this.userRepository.save(user);
 
-    return usersaved;
+    return userSaved;
   }
 }
 
