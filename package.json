@@ -6,6 +6,7 @@
   "author": "Bruno Santos <bruno.santos@hivelabs.com.br>",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
     "test": "jest --runInBand --detectOpenHandles",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --poll --respawn src/server.ts",
     "start": "node src/server.js",
